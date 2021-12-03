@@ -1,0 +1,33 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  semanticRelease:
+    name: Release the Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+          registry-url: https://npm.pkg.github.com/
+      - name: Install Dependencies
+        run: |
+          npm ci
+          npm run build
+      - name: Semantic Release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Githup Package Publish
+        run: |
+          npm publish
+          npm version
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

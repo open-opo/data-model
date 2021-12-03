@@ -1,0 +1,13 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "out": "docs",
+  "name": "OPO - Data Dictionary",
+  "readme": "README_DOCS.md",
+  "includeVersion": false,
+  "excludeExternals": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeInternal": true,
+  "sort": "visibility",
+  "sort": "alphabetical"
+}

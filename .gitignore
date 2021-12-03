@@ -1,0 +1,13 @@
+*.js
+# !config/*.js
+!jest.config.js
+*.d.ts
+node_modules
+
+/docs
+.DS_Store
+!ts-to-zod.config.js
+
+.yalc
+dist/**/*
+yalc.lock
