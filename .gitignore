@@ -4,7 +4,6 @@
 *.d.ts
 node_modules
 
-/docs
 .DS_Store
 !ts-to-zod.config.js
 
