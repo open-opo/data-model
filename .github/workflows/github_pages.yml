@@ -21,6 +21,8 @@ jobs:
         run: |
           npm ci
           npm run docs:build
-          cp -R docs/* .
+          git add docs -f
+          git commit -m "gh-pages update!"
+          git subtree push --prefix docs origin gh-pages
 
 
