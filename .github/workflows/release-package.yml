@@ -28,7 +28,7 @@ jobs:
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Generate Github Release
+      - name: Generate Github Release Notes
         uses: softprops/action-gh-release@v1
         with:
           generate_release_notes: true
