@@ -1,11 +1,4 @@
-import {
-  IsDate,
-  IsDecimal,
-  IsInt,
-  IsNumber,
-  IsUUID,
-  MaxLength,
-} from "class-validator";
+import { IsDate, IsDecimal, IsInt, IsUUID, MaxLength } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { BaseModel } from "./baseModel";
 import { ReferralBase } from "./referral";

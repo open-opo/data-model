@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { BaseModel } from "./baseModel";
 import {
   Race,
@@ -23,8 +24,6 @@ import {
   IsNumber,
   IsPhoneNumber,
   IsUUID,
-  Max,
-  maxLength,
   MaxLength,
 } from "class-validator";
 import { ABGBase } from "./abg";
@@ -39,20 +38,17 @@ import { OrganizationUnitBase } from "./organizationUnit";
 /**
  * The current organ status for a case
  */
-export enum OrganStatus {
-}
+export enum OrganStatus {}
 
 /**
  * The current tissue status for a case
  */
-export enum TissueStatus {
-}
+export enum TissueStatus {}
 
 /**
  * The current family status for a case
  */
-export enum FamilyStatus {
-}
+export enum FamilyStatus {}
 
 /**
  * Cause of Death (COD)
@@ -104,8 +100,7 @@ export enum ReferralType {
   RuleOut = "Rule Out",
 }
 
-export enum ReferralSource {
-}
+export enum ReferralSource {}
 
 /**
  * Represents a Referral

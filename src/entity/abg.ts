@@ -1,25 +1,6 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  JoinColumn,
-} from "typeorm";
-import {
-  Contains,
-  IsInt,
-  Length,
-  IsEmail,
-  IsFQDN,
-  IsDate,
-  Min,
-  Max,
-  MaxLength,
-  IsDecimal,
-  IsUUID,
-  isUUID,
-  IsEnum,
-} from "class-validator";
+/* eslint-disable no-unused-vars */
+import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
+import { IsDate, MaxLength, IsDecimal, IsUUID, IsEnum } from "class-validator";
 import { BaseModel } from "./baseModel";
 import { ReferralBase } from "./referral";
 

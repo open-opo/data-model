@@ -1,4 +1,4 @@
-import { IsEnum, MaxLength, Min } from "class-validator";
+import { IsEnum, Min } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { BaseModel } from "./baseModel";
 import { ReferralBase } from "./referral";
@@ -8,18 +8,14 @@ import { ReferralBase } from "./referral";
  *
  * [ToDo] We need help making this list
  */
-export enum StaffType {
-
-}
+export enum StaffType {}
 
 /**
  * What is the Staffing doing OnSite
  *
  * [ToDo] We need help making this list
  */
-export enum StaffRole {
-
-}
+export enum StaffRole {}
 
 /**
  * Staff Tracking

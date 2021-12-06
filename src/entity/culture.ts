@@ -1,11 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { IsDate, IsEnum, IsUUID, MaxLength } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { BaseModel } from "./baseModel";
 import { ReferralBase } from "./referral";
 
-export enum Source {
-
-}
+export enum Source {}
 
 export enum Result {
   Positive = "Positive",

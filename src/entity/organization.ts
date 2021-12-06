@@ -1,13 +1,12 @@
 import {
   IsAlpha,
-  IsAlphanumeric,
   IsEnum,
   IsInt,
   IsPhoneNumber,
   MaxLength,
   Min,
 } from "class-validator";
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, OneToMany } from "typeorm";
 import { State, TimeZone } from "../enum/opocdmEnums";
 import { BaseModel } from "./baseModel";
 import { OrganizationUnitBase } from "./organizationUnit";
