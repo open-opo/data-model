@@ -25,8 +25,8 @@ jobs:
           b="${a##refs/tags/}"
           git config --global user.name "Ari P"
           git config --global user.email "ari@gray.digital"
-          npm version "${b}" -m "Upgrade to %s [ci skip]" --no-git-tag-version
-          git status
+          npm version "${b}" --no-git-tag-version
+          git commit -m "Upgrade to ${b} [ci skip]"
           git add .
           git push origin main
       - name: NPM Package Publish
