@@ -18,7 +18,7 @@
     "@types/node": "^16.10.2",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "class-validator": "^0.13.1",
-    "http-server": "^13.0.2",
+    "http-server": "^14.0.0",
     "pg": "^8.7.1",
     "ts-auto-mock": "^3.5.0",
     "ts-node": "^10.2.1",
