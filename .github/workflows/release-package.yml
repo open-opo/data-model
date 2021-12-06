@@ -18,17 +18,16 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - name: Install Dependencies
         run: |
-
           npm ci
           npm run build
           a="${{ github.ref }}"
           b="${a##refs/tags/}"
-          git config --global user.name "Ari P"
+          git config --global user.name "ariperez"
           git config --global user.email "ari@gray.digital"
           npm version "${b}" --no-git-tag-version
-          git commit -m "Upgrade to ${b} [ci skip]"
           git add .
-          git push origin main
+          git commit -m "Upgrade to ${b} [ci skip]"
+          git push
       - name: NPM Package Publish
         run: |
           npm publish --access public
