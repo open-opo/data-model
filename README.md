@@ -11,4 +11,3 @@ OPO - Data Dictionary (Organ Procurement Organization) is a project that was cre
 "docs:build": "typedoc lib/index.ts",
 "docs:watch": "typedoc --watch lib/index.ts",
 ```
-

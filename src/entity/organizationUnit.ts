@@ -1,12 +1,10 @@
 import { IsEnum, MaxLength, Min } from "class-validator";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { ReferralBase } from "..";
 import { BaseModel } from "./baseModel";
 import { OrganizationBase } from "./organization";
 
-export enum UnitType {
-
-}
+export enum UnitType {}
 
 /**
  * Organization Unit

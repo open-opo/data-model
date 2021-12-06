@@ -1,22 +1,11 @@
 import {
-  Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
   BaseEntity,
 } from "typeorm";
-import {
-  Contains,
-  IsInt,
-  Length,
-  IsEmail,
-  IsFQDN,
-  IsDate,
-  Min,
-  Max,
-  IsUUID,
-} from "class-validator";
+import { IsInt, IsUUID } from "class-validator";
 
 export class BaseModel extends BaseEntity {
   /**
