@@ -27,7 +27,7 @@ jobs:
           npm version "${b}" --no-git-tag-version
           git add .
           git commit -m "Upgrade to ${b} [ci skip]"
-          git push
+          git push origin HEAD:main
       - name: NPM Package Publish
         run: |
           npm publish --access public
