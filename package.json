@@ -1,8 +1,7 @@
 {
   "name": "@open-opo/data-model",
-  "version": "1.1.14",
+  "version": "0.0.0",
   "description": "",
-  "main": "./dist/index.js",
   "scripts": {
     "start": "ts-node index.ts",
     "build": "tsc",
@@ -35,12 +34,13 @@
   "files": [
     "dist"
   ],
+  "main": "./dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openo-opo/data-model.git"
+    "url": "https://github.com/open-opo/data-model.git"
   },
   "publishConfig": {
-    "access": "restricted",
-    "@open-opo:registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "tag": "latest"
   }
 }
