@@ -3,6 +3,7 @@ OpenOPO - Data Model is a project that was created to allow better portability o
 Currently, we have several models built out for the different entity types. You can find those listed in the table below or under the Exports section on the right.
 
 #### Models
+
 <table>
     <tr>
         <td><a href="/classes/ABGBase.html">ABG</a></td>
