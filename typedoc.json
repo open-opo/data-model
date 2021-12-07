@@ -1,13 +1,14 @@
 {
   "entryPoints": ["src/index.ts"],
   "out": "docs",
-  "name": "OPO - Data Dictionary",
+  "name": "OpenOPO - Data Model",
   "readme": "README_DOCS.md",
   "includeVersion": false,
   "excludeExternals": true,
   "excludePrivate": true,
   "excludeProtected": true,
   "excludeInternal": true,
+  "categorizeByGroup": false,
   "sort": "visibility",
   "sort": "alphabetical"
 }

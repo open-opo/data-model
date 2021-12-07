@@ -4,6 +4,9 @@ import { IsDate, MaxLength, IsDecimal, IsUUID, IsEnum } from "class-validator";
 import { BaseModel } from "./baseModel";
 import { ReferralBase } from "./referral";
 
+/**
+ * The Mode
+ */
 export enum Mode {
   NC = "NC",
   HFOV = "HFOV",
