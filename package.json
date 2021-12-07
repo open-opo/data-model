@@ -29,6 +29,7 @@
   "files": [
     "dist"
   ],
+  "license": "MIT",
   "main": "./dist/index.js",
   "repository": {
     "type": "git",
