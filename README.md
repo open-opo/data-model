@@ -1,10 +1,12 @@
-# OPO - Data Dictionary
+# OPO - Data Model
 
-OPO - Data Dictionary (Organ Procurement Organization) is a project that was created to allow better portability of OPO data.
+The Open OPO - Data Model is a project created to allow better understanding of all data relevant to Organ Donation and Transplants.
 
 [Latest Documentation Website](https://open-opo.github.io/data-model/)
 
-## Create Docs Website
+## Developer Stuff
+
+### Create Docs Website
 
 ```bash
 "docs:serve": "http-server ./docs",
