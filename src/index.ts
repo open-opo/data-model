@@ -40,11 +40,3 @@ export {
   CauseOfDeath as CauseOfDeathUNOS,
   MechanismOfDeath as MechanismOfDeathUNOS,
 } from "./enum/unosEnums";
-
-// Exporting Auth
-export {
-  AccountEntity,
-  SessionEntity,
-  UserEntity,
-  VerificationTokenEntity,
-} from "./entity/auth";
