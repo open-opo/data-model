@@ -56,6 +56,12 @@ export declare class ABGBase extends BaseModel {
      */
     be?: number | null;
     /**
+     * BE
+     * @max_length 3
+     * @decimal_places 2
+     */
+    bet?: number | null;
+    /**
      * HCO3
      * @max_length 4
      * @decimal_places 2
