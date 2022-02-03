@@ -72,7 +72,7 @@ export class ABGBase extends BaseModel {
   @IsDecimal({ decimal_digits: "2" })
   pco2?: number | null;
 
-  @Column({ type: "string", default: null })
+  @Column({ name: "unos_donor_id", type: "varchar", length: 20, default: null })
   ari?: string | null;
 
   /**
