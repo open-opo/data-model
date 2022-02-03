@@ -86,12 +86,6 @@ var ABGBase = /** @class */ (function (_super) {
     ], ABGBase.prototype, "pco2", void 0);
     __decorate([
         (0, typeorm_1.Column)({ type: "decimal", default: null }),
-        (0, class_validator_1.MaxLength)(5),
-        (0, class_validator_1.IsDecimal)({ decimal_digits: "2" }),
-        __metadata("design:type", Object)
-    ], ABGBase.prototype, "pc03", void 0);
-    __decorate([
-        (0, typeorm_1.Column)({ type: "decimal", default: null }),
         (0, class_validator_1.MaxLength)(3),
         (0, class_validator_1.IsDecimal)({ decimal_digits: "2" }),
         __metadata("design:type", Object)
