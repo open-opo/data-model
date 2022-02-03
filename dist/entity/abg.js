@@ -85,9 +85,11 @@ var ABGBase = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], ABGBase.prototype, "pco2", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ name: "unos_donor_id", type: "varchar", length: 20, default: null }),
+        (0, typeorm_1.Column)({ type: "decimal", default: null }),
+        (0, class_validator_1.MaxLength)(5),
+        (0, class_validator_1.IsDecimal)({ decimal_digits: "2" }),
         __metadata("design:type", Object)
-    ], ABGBase.prototype, "ari", void 0);
+    ], ABGBase.prototype, "pc03", void 0);
     __decorate([
         (0, typeorm_1.Column)({ type: "decimal", default: null }),
         (0, class_validator_1.MaxLength)(3),

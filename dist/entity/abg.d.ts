@@ -49,7 +49,12 @@ export declare class ABGBase extends BaseModel {
      * @decimal_places 2
      */
     pco2?: number | null;
-    ari?: string | null;
+    /**
+     * pc03
+     * @max_length 5
+     * @decimal_places 2
+     */
+    pc03?: number | null;
     /**
      * BE
      * @max_length 3

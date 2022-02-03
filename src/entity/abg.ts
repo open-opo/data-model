@@ -72,8 +72,15 @@ export class ABGBase extends BaseModel {
   @IsDecimal({ decimal_digits: "2" })
   pco2?: number | null;
 
-  @Column({ name: "unos_donor_id", type: "varchar", length: 20, default: null })
-  ari?: string | null;
+  /**
+   * pc03
+   * @max_length 5
+   * @decimal_places 2
+   */
+  @Column({ type: "decimal", default: null })
+  @MaxLength(5)
+  @IsDecimal({ decimal_digits: "2" })
+  pc03?: number | null;
 
   /**
    * BE
