@@ -72,6 +72,8 @@ export class ABGBase extends BaseModel {
   @IsDecimal({ decimal_digits: "2" })
   pco2?: number | null;
 
+  ari?: string | null;
+
   /**
    * BE
    * @max_length 3
