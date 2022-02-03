@@ -1,12 +1,12 @@
-*.js
+# *.js
 # !config/*.js
 !jest.config.js
-*.d.ts
+# *.d.ts
 node_modules
 
 .DS_Store
 !ts-to-zod.config.js
 
 .yalc
-dist/**/*
+# dist/**/*
 yalc.lock
