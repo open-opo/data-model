@@ -8,7 +8,8 @@
   "excludePrivate": true,
   "excludeProtected": true,
   "excludeInternal": true,
-  "categorizeByGroup": false,
+  "categorizeByGroup": true,
   "sort": "visibility",
+  "sort": "instance-first",
   "sort": "alphabetical"
 }

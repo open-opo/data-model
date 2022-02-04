@@ -6,6 +6,8 @@ import { ReferralBase } from "./referral";
 
 /**
  * The Mode
+ *
+ * @enum
  */
 export enum Mode {
   NC = "NC",
@@ -40,8 +42,6 @@ export class ABGBase extends BaseModel {
   }
 
   /**
-   * pH
-   *
    * The pH or H+ indicates if a person is acidemic (pH < 7.35; H+ >45) or alkalemic (pH > 7.45; H+ < 35).
    *
    * https://en.wikipedia.org/wiki/Arterial_blood_gas_test#pH
@@ -55,8 +55,6 @@ export class ABGBase extends BaseModel {
   ph?: number | null;
 
   /**
-   * pCO2
-   *
    * The carbon dioxide partial pressure (PaCO2) is an indicator of CO2 production and
    * elimination: for a constant metabolic rate, the PaCO2 is determined entirely by its
    * elimination through ventilation. A high PaCO2 (respiratory acidosis, alternatively
@@ -74,10 +72,6 @@ export class ABGBase extends BaseModel {
   pco2?: number | null;
 
   /**
-   * BE
-   *
-   *
-   *
    * @max_length 3
    * @decimal_places 2
    */
@@ -187,7 +181,9 @@ export class ABGBase extends BaseModel {
   mode?: Mode | null;
 
   /**
+   *
    * The Id we use when we upload this to UNOS
+   * @category _
    */
   @Column({ type: "uuid", name: "unos_record_id", default: null })
   @IsUUID()
@@ -203,6 +199,7 @@ export class ABGBase extends BaseModel {
   /**
    * The referral Id this applies to
    * @format uuid
+   * @category _
    */
   @Column({ nullable: true, type: "uuid", name: "referral_id" })
   @IsUUID()
@@ -210,6 +207,8 @@ export class ABGBase extends BaseModel {
 
   /**
    * The referral this applies to
+   *
+   * @ignore
    */
   @ManyToOne(() => ReferralBase, (referral: ReferralBase) => referral.abgs)
   @JoinColumn({ name: "referral_id" })

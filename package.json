@@ -10,19 +10,15 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "docs:serve": "http-server ./docs",
     "docs:build": "typedoc src/index.ts",
-    "docs:watch": "typedoc --watch",
-    "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -n ",
-    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"
+    "docs:watch": "typedoc --watch"
   },
   "dependencies": {
     "@types/node": "^17.0.14",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "class-validator": "^0.13.1",
     "http-server": "^14.0.0",
-    "pg": "^8.7.1",
     "ts-auto-mock": "^3.5.0",
     "ts-node": "^10.2.1",
-    "typedoc": "^0.22.5",
     "typeorm": "^0.2.38",
     "typescript": "^4.4.3"
   },
@@ -38,5 +34,8 @@
   "publishConfig": {
     "access": "public",
     "tag": "latest"
+  },
+  "devDependencies": {
+    "typedoc": "^0.22.11"
   }
 }
