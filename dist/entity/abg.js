@@ -52,6 +52,8 @@ var Mode;
  * Represents an Arterial Blood Gas
  *
  * There will be a Arterial Blood Gas for each draw, so a referral will have multiple ABGs
+ *
+ * https://en.wikipedia.org/wiki/Arterial_blood_gas_test
  */
 var ABGBase = /** @class */ (function (_super) {
     __extends(ABGBase, _super);
@@ -62,16 +64,6 @@ var ABGBase = /** @class */ (function (_super) {
     function ABGBase() {
         return _super.call(this) || this;
     }
-    __decorate([
-        (0, typeorm_1.Column)({ nullable: true, type: "uuid", name: "referral_id" }),
-        (0, class_validator_1.IsUUID)(),
-        __metadata("design:type", String)
-    ], ABGBase.prototype, "referralId", void 0);
-    __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return referral_1.ReferralBase; }, function (referral) { return referral.abgs; }),
-        (0, typeorm_1.JoinColumn)({ name: "referral_id" }),
-        __metadata("design:type", referral_1.ReferralBase)
-    ], ABGBase.prototype, "referral", void 0);
     __decorate([
         (0, typeorm_1.Column)({ type: "decimal", default: null }),
         (0, class_validator_1.MaxLength)(4),
@@ -151,6 +143,16 @@ var ABGBase = /** @class */ (function (_super) {
         (0, class_validator_1.IsDate)(),
         __metadata("design:type", Date)
     ], ABGBase.prototype, "datetime", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ nullable: true, type: "uuid", name: "referral_id" }),
+        (0, class_validator_1.IsUUID)(),
+        __metadata("design:type", String)
+    ], ABGBase.prototype, "referralId", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return referral_1.ReferralBase; }, function (referral) { return referral.abgs; }),
+        (0, typeorm_1.JoinColumn)({ name: "referral_id" }),
+        __metadata("design:type", referral_1.ReferralBase)
+    ], ABGBase.prototype, "referral", void 0);
     ABGBase = __decorate([
         (0, typeorm_1.Entity)({ name: "abg" }),
         __metadata("design:paramtypes", [])
