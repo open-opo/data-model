@@ -83,6 +83,16 @@ export class ABGBase extends BaseModel {
   be?: number | null;
 
   /**
+   * BE
+   * @max_length 3
+   * @decimal_places 2
+   */
+  @Column({ type: "decimal", default: null })
+  @MaxLength(3)
+  @IsDecimal({ decimal_digits: "2" })
+  bet?: number | null;
+
+  /**
    * HCO3
    * @max_length 4
    * @decimal_places 2
