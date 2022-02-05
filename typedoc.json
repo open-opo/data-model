@@ -1,7 +1,7 @@
 {
   "entryPoints": ["src/index.ts"],
   "out": "docs",
-  "name": "OpenOPO - Data Model",
+  "name": "Open OPO - Data Model",
   "readme": "README_DOCS.md",
   "includeVersion": false,
   "excludeExternals": true,
@@ -9,7 +9,7 @@
   "excludeProtected": true,
   "excludeInternal": true,
   "categorizeByGroup": true,
-  "sort": "visibility",
-  "sort": "instance-first",
+  "defaultCategory": "Other",
+  "sort": "static-first",
   "sort": "alphabetical"
 }

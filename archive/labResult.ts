@@ -1,7 +1,7 @@
 import { IsDate, IsDecimal, IsInt, IsUUID, MaxLength } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { BaseModel } from "./baseModel";
-import { ReferralBase } from "./referral";
+import { Referral } from "./referral";
 
 /**
  * Represents a Lab Result
@@ -9,7 +9,7 @@ import { ReferralBase } from "./referral";
  * There will be a Lab Result for each draw, so a referral will have multiple Labs
  */
 @Entity({ name: "lab_result" })
-export class LabResultBase extends BaseModel {
+export class LabResult extends BaseModel {
   /**
    * @class
    * @ignore
@@ -28,12 +28,9 @@ export class LabResultBase extends BaseModel {
   /**
    * The referral this applies to
    */
-  @ManyToOne(
-    () => ReferralBase,
-    (referral: ReferralBase) => referral.labResults
-  )
+  @ManyToOne(() => Referral, (referral: Referral) => referral.labResults)
   @JoinColumn({ name: "referral_id" })
-  referral: ReferralBase;
+  referral: Referral;
 
   /**
    * Sodium

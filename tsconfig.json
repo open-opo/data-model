@@ -16,5 +16,5 @@
       }
     ]
   },
-  "include": ["./src/index.ts", "./src/migration"]
+  "include": ["./src/**/*.ts", "./src/migration"]
 }

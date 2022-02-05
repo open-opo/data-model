@@ -1,17 +1,3 @@
-/* eslint-disable no-unused-vars */
-import { BaseModel } from "./baseModel";
-import {
-  Race,
-  Sex,
-  Credentials,
-  CircumstanceOfDeath,
-  RegistryStatus,
-  RegistrySource,
-} from "../enum/opocdmEnums";
-import {
-  CauseOfDeath as CauseOfDeathUNOS,
-  MechanismOfDeath as MechanismOfDeathUNOS,
-} from "../enum/unosEnums";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import {
   IsAlpha,
@@ -26,36 +12,51 @@ import {
   IsUUID,
   MaxLength,
 } from "class-validator";
-import { ABGBase } from "./abg";
-import { CBCBase } from "./cbc";
-import { CultureBase } from "./culture";
-import { LabResultBase } from "./labResult";
-import { OrganizationBase } from "./organization";
-import { StaffTrackingBase } from "./staffTracking";
-import { UrinalysisBase } from "./urinalysis";
-import { OrganizationUnitBase } from "./organizationUnit";
+
+import { BaseModel } from "../src/BaseTable";
+import {
+  race,
+  sex,
+  credentials,
+  circumstance_of_death,
+  registry_status,
+  registry_source,
+} from "../enum/enums";
+import {
+  cause_of_death as cause_of_death_unos,
+  mechanism_of_death as mechanism_of_death_unos,
+} from "../enum/unos_enums";
+
+import { abg } from "../../archive/Abg";
+import { cbc } from "./cbc";
+import { culture } from "./culture";
+import { lab_result } from "./lab_result";
+import { organization } from "./organization";
+import { staff_tracking } from "./staff_tracking";
+import { urinalysis } from "./Urinalysis";
+import { organization_unit } from "./organization_unit";
 
 /**
  * The current organ status for a case
  */
-export enum OrganStatus {}
+export enum organ_status {}
 
 /**
  * The current tissue status for a case
  */
-export enum TissueStatus {}
+export enum tissue_status {}
 
 /**
  * The current family status for a case
  */
-export enum FamilyStatus {}
+export enum family_status {}
 
 /**
  * Cause of Death (COD)
  *
  * [ToDo: Description]
  */
-export enum CauseOfDeath {
+export enum cause_of_death {
   AAA = "AAA",
   Exsanguination = "Exsanguination",
   FetalDemise = "Fetal Demise",
@@ -104,60 +105,43 @@ export enum ReferralSource {}
 
 /**
  * Represents a Referral
- *
- * [ToDo: Description]
  */
 @Entity({ name: "referral" })
-export class ReferralBase extends BaseModel {
-  /**
-   * @class
-   * @ignore
-   */
-  constructor() {
-    super();
-  }
-
+export class Referral extends BaseModel {
   /**
    * The Patient's First Name
-   * @max_length 50
    */
-  @Column({ name: "patient_firstname", type: "varchar", length: 50 })
+  @Column({ name: "patient_first_name", type: "varchar" })
   @MaxLength(50)
   patientFirstName: string;
 
   /**
    * The Patient's Last Name
-   * @max_length 50
    */
-  @Column({ name: "patient_lastname", type: "varchar", length: 50 })
+  @Column({ type: "varchar" })
   @MaxLength(50)
-  patientLastName: string;
+  patient_last_name: string;
 
   /**
    * The Patient's Middle Name
-   * @max_length 25
    */
   @Column({
-    name: "patient_middlename",
     type: "varchar",
-    length: 25,
     default: null,
   })
   @MaxLength(25)
-  patientMiddleName?: string | null;
+  patient_middle_name?: string | null;
 
   /**
    * The Patient's Nick Name
    * @max_length 25
    */
   @Column({
-    name: "patient_nickname",
     type: "varchar",
-    length: 25,
     default: null,
   })
   @MaxLength(25)
-  patientNickName?: string | null;
+  patient_nick_name?: string | null;
 
   /**
    * The race of a person
@@ -227,9 +211,9 @@ export class ReferralBase extends BaseModel {
   /**
    * The organization that referred this patient
    */
-  @ManyToOne(() => OrganizationBase, (x: OrganizationBase) => x.referrals)
+  @ManyToOne(() => Organization, (x: Organization) => x.referrals)
   @JoinColumn({ name: "referring_organization_id" })
-  referringOrganization: OrganizationBase;
+  referringOrganization: Organization;
 
   /**
    * The datetime when the referral was received
@@ -311,12 +295,9 @@ export class ReferralBase extends BaseModel {
   /**
    * The unit the patient is currently located in
    */
-  @ManyToOne(
-    () => OrganizationUnitBase,
-    (x: OrganizationUnitBase) => x.referrals
-  )
+  @ManyToOne(() => OrganizationUnit, (x: OrganizationUnit) => x.referrals)
   @JoinColumn({ name: "unit_id" })
-  unit: OrganizationUnitBase;
+  unit: OrganizationUnit;
 
   /**
    * The room the patient is currently located in
@@ -402,21 +383,26 @@ export class ReferralBase extends BaseModel {
   /**
    * The patients Cause of Death (OPO perspective)
    */
-  @Column({ name: "cod_opo", enum: CauseOfDeath, type: "enum", default: null })
-  @IsEnum(CauseOfDeath)
-  codOPO?: CauseOfDeath | null;
+  @Column({
+    name: "cod_opo",
+    enum: cause_of_death,
+    type: "enum",
+    default: null,
+  })
+  @IsEnum(cause_of_death)
+  codOPO?: cause_of_death | null;
 
   /**
    * The patients Cause of Death (UNOS perspective)
    */
   @Column({
     name: "cod_unos",
-    enum: CauseOfDeathUNOS,
+    enum: cause_of_deathUNOS,
     type: "enum",
     default: null,
   })
-  @IsEnum(CauseOfDeathUNOS)
-  codUNOS?: CauseOfDeathUNOS | null;
+  @IsEnum(cause_of_deathUNOS)
+  codUNOS?: cause_of_deathUNOS | null;
 
   /**
    * Is the DCD Criteria met
@@ -453,36 +439,36 @@ export class ReferralBase extends BaseModel {
    */
   @Column({
     name: "organ_status",
-    enum: OrganStatus,
+    enum: organ_status,
     type: "enum",
     default: null,
   })
-  @IsEnum(OrganStatus)
-  organStatus?: OrganStatus | null;
+  @IsEnum(organ_status)
+  organ_status?: organ_status | null;
 
   /**
    * The current status of this patient (in regards to Tissue donation)
    */
   @Column({
     name: "tissue_status",
-    enum: TissueStatus,
+    enum: tissue_status,
     type: "enum",
     default: null,
   })
-  @IsEnum(TissueStatus)
-  tissueStatus?: TissueStatus | null;
+  @IsEnum(tissue_status)
+  tissue_status?: tissue_status | null;
 
   /**
    * The current status of this patient (in regards to the OPOs Family Services Dept.)
    */
   @Column({
     name: "family_status",
-    enum: FamilyStatus,
+    enum: family_status,
     type: "enum",
     default: null,
   })
-  @IsEnum(FamilyStatus)
-  familyStatus?: FamilyStatus | null;
+  @IsEnum(family_status)
+  family_status?: family_status | null;
 
   /**
    * The current type of referral (Organ, Tissue, Eye)
@@ -683,21 +669,21 @@ export class ReferralBase extends BaseModel {
   attendingMD?: string | null;
 
   // Relationships
-  @OneToMany(() => ABGBase, (x: ABGBase) => x.referral)
-  abgs: ABGBase[];
+  @OneToMany(() => ABG, (x: ABG) => x.referral)
+  abgs: ABG[];
 
-  @OneToMany(() => CBCBase, (x: CBCBase) => x.referral)
-  cbcs: CBCBase[];
+  @OneToMany(() => CBC, (x: CBC) => x.referral)
+  cbcs: CBC[];
 
-  @OneToMany(() => CultureBase, (x: CultureBase) => x.referral)
-  cultures: CultureBase[];
+  @OneToMany(() => Culture, (x: Culture) => x.referral)
+  cultures: Culture[];
 
-  @OneToMany(() => LabResultBase, (x: LabResultBase) => x.referral)
-  labResults: LabResultBase[];
+  @OneToMany(() => LabResult, (x: LabResult) => x.referral)
+  labResults: LabResult[];
 
-  @OneToMany(() => UrinalysisBase, (x: UrinalysisBase) => x.referral)
-  urinalyses: UrinalysisBase[];
+  @OneToMany(() => Urinalysis, (x: Urinalysis) => x.referral)
+  urinalyses: Urinalysis[];
 
-  @OneToMany(() => StaffTrackingBase, (x: StaffTrackingBase) => x.referral)
-  staffTrackings: StaffTrackingBase[];
+  @OneToMany(() => StaffTracking, (x: StaffTracking) => x.referral)
+  staffTrackings: StaffTracking[];
 }

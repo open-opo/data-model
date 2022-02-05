@@ -1,7 +1,7 @@
 import { IsDate, IsDecimal, IsUUID, MaxLength } from "class-validator";
 import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
-import { BaseModel } from "./baseModel";
-import { ReferralBase } from "./referral";
+import { BaseModel } from "./BaseModel";
+import { Referral } from "./Referral";
 
 /**
  * Represents a Complete Blood Count
@@ -9,7 +9,7 @@ import { ReferralBase } from "./referral";
  * There will be a CBC for each draw, so a referral will have multiple CBCs
  */
 @Entity({ name: "cbc" })
-export class CBCBase extends BaseModel {
+export class CBC extends BaseModel {
   /**
    * @class
    * @ignore
@@ -28,12 +28,13 @@ export class CBCBase extends BaseModel {
   /**
    * The referral this applies to
    */
-  @ManyToOne(() => ReferralBase, (referral: ReferralBase) => referral.cbcs)
+  @ManyToOne(() => Referral, (referral: Referral) => referral.cbcs)
   @JoinColumn({ name: "referral_id" })
-  referral: ReferralBase;
+  referral: Referral;
 
   /**
-   * White Blood Cells
+   * (wbc) White Blood Cells
+   *
    * @max_length 5
    * @decimal_places 2
    */
@@ -43,7 +44,7 @@ export class CBCBase extends BaseModel {
   wbc?: number | null;
 
   /**
-   * Red Blood Cells
+   * (rbc) Red Blood Cells is the number of red blood cells in the blood.
    * @max_length 5
    * @decimal_places 2
    */
@@ -53,7 +54,8 @@ export class CBCBase extends BaseModel {
   rbc?: number | null;
 
   /**
-   * Hemoglobin
+   * Hemoglobin is the amount of red blood cells in a person's blood.
+   *
    * @max_length 5
    * @decimal_places 2
    */
@@ -63,7 +65,7 @@ export class CBCBase extends BaseModel {
   hgb?: number | null;
 
   /**
-   * Hematocrit
+   * Hematocrit is the volume of red blood cells in a person's blood divided by the volume of all blood in a person's blood.
    * @max_length 5
    * @decimal_places 2
    */
@@ -73,7 +75,7 @@ export class CBCBase extends BaseModel {
   hct?: number | null;
 
   /**
-   * Platelets
+   * Platelets is the number of white blood cells in a person's blood.
    * @max_length 5
    * @decimal_places 2
    */
@@ -83,7 +85,11 @@ export class CBCBase extends BaseModel {
   platelets?: number | null;
 
   /**
-   * Neutrophils
+   * Neutrophils is the number of white blood cells in a person's blood.
+   *
+   *
+   * https://en.wikipedia.org/wiki/Neutrophil
+   *
    * @max_length 5
    * @decimal_places 2
    */
@@ -93,7 +99,10 @@ export class CBCBase extends BaseModel {
   segs?: number | null;
 
   /**
-   * Lymphocytes
+   * Lymphocytes is the number of white blood cells in a person's blood.
+   *
+   *
+   *
    * @max_length 5
    * @decimal_places 2
    */
@@ -113,7 +122,9 @@ export class CBCBase extends BaseModel {
   bands?: number | null;
 
   /**
-   * Mononucleosis
+   * Mononucleosis is a common infection in children.
+   *
+   *
    * @max_length 5
    * @decimal_places 2
    */
@@ -123,7 +134,9 @@ export class CBCBase extends BaseModel {
   mono?: number | null;
 
   /**
-   * Eosinophil
+   * Eosinophil is a common infection in children.
+   *
+   *
    * @max_length 5
    * @decimal_places 2
    */
