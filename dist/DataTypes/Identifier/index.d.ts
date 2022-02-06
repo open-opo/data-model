@@ -1,4 +1,5 @@
 import { IdentifierUse } from "./enums";
+import { BaseTable } from "../../BaseTable";
 /**
  * **Definition**: An identifier - identifies some entity uniquely and unambiguously. Typically this is used for business identifiers.
  *
@@ -10,7 +11,7 @@ import { IdentifierUse } from "./enums";
  *
  * https://hl7.org/fhir/datatypes.html#Identifier
  */
-export declare class Identifier {
+export declare class Identifier extends BaseTable {
     /**
      * **Cardinality**:	0..1
      *

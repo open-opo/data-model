@@ -10,6 +10,7 @@ import {
 
 import { IdentifierUse } from "./enums";
 import { Organization } from "../../Administration/Organization";
+import { BaseTable } from "../../BaseTable";
 
 /**
  * **Definition**: An identifier - identifies some entity uniquely and unambiguously. Typically this is used for business identifiers.
@@ -23,7 +24,7 @@ import { Organization } from "../../Administration/Organization";
  * https://hl7.org/fhir/datatypes.html#Identifier
  */
 @Entity({ name: "identifier" })
-export class Identifier {
+export class Identifier extends BaseTable {
   /**
    * **Cardinality**:	0..1
    *
