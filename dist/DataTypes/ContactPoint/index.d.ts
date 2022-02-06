@@ -1,3 +1,4 @@
+import { BaseTable } from "../../BaseTable";
 import { ContactPointSystem } from "./enums";
 /**
  * **Definition**: An identifier - identifies some entity uniquely and unambiguously. Typically this is used for business identifiers.
@@ -10,7 +11,7 @@ import { ContactPointSystem } from "./enums";
  *
  * https://hl7.org/fhir/datatypes.html#Identifier
  */
-export declare class ContactPoint {
+export declare class ContactPoint extends BaseTable {
     /**
      * **Definition**: Telecommunications form for contact point - what communications system is required to make use of the contact.
      *

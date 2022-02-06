@@ -8,6 +8,7 @@ import {
   Min,
 } from "class-validator";
 
+import { BaseTable } from "../../BaseTable";
 import { ContactPointSystem } from "./enums";
 
 /**
@@ -22,7 +23,7 @@ import { ContactPointSystem } from "./enums";
  * https://hl7.org/fhir/datatypes.html#Identifier
  */
 @Entity({ name: "contact_point" })
-export class ContactPoint {
+export class ContactPoint extends BaseTable {
   /**
    * **Definition**: Telecommunications form for contact point - what communications system is required to make use of the contact.
    *
