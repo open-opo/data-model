@@ -26,6 +26,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Organization = exports.OrganizationIdentifier = void 0;
 var typeorm_1 = require("typeorm");
+var class_validator_1 = require("class-validator");
 var BaseTable_1 = require("../../BaseTable");
 var DataTypes_1 = require("../../DataTypes");
 // import { State, TimeZone } from "../../opocdmEnums";
@@ -67,6 +68,21 @@ var Organization = /** @class */ (function (_super) {
         (0, typeorm_1.OneToMany)(function () { return OrganizationIdentifier; }, function (organizationIdentifier) { return organizationIdentifier.organization; }),
         __metadata("design:type", Array)
     ], Organization.prototype, "organizationIdentifiers", void 0);
+    __decorate([
+        (0, class_validator_1.IsBoolean)(),
+        (0, typeorm_1.Column)({ name: "active", type: "boolean" }),
+        __metadata("design:type", Boolean)
+    ], Organization.prototype, "active", void 0);
+    __decorate([
+        (0, class_validator_1.IsString)(),
+        (0, typeorm_1.Column)({ name: "name", type: "string", length: 64 }),
+        __metadata("design:type", String)
+    ], Organization.prototype, "name", void 0);
+    __decorate([
+        (0, class_validator_1.IsString)(),
+        (0, typeorm_1.Column)({ name: "name", type: "string", length: 64 }),
+        __metadata("design:type", String)
+    ], Organization.prototype, "alias", void 0);
     Organization = __decorate([
         (0, typeorm_1.Entity)({ name: "organization" })
     ], Organization);

@@ -21,7 +21,7 @@ import { BaseTable } from "../../BaseTable";
  *
  * **Requirements**: Identifier for the organization that is used to identify the organization across multiple disparate systems.
  *
- * https://hl7.org/fhir/datatypes.html#Identifier
+ * [FHIR Reference](https://hl7.org/fhir/datatypes.html#Identifier)
  */
 @Entity({ name: "identifier" })
 export class Identifier extends BaseTable {
@@ -38,7 +38,9 @@ export class Identifier extends BaseTable {
    *
    * **Comments**: Applications can assume that an identifier is permanent unless it explicitly says that it is temporary.
    *
-   * https://hl7.org/fhir/datatypes-definitions.html#Identifier.use
+   * [FHIR Reference](https://hl7.org/fhir/datatypes-definitions.html#Identifier.use)
+   *
+   * @is_enum
    */
   @Column({
     name: "use",

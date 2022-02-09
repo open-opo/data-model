@@ -25,7 +25,7 @@ export declare class Organization extends BaseTable {
      *
      * **Cardinality**:	0..*
      *
-     * **Type**:	{@link Identifier}
+     * **Type**: {@linkplain Identifier}
      *
      * **Requirements**: Organizations are known by a variety of ids. Some institutions maintain several, and most collect identifiers for exchange with other organizations concerning the organization.
      *
@@ -53,6 +53,9 @@ export declare class Organization extends BaseTable {
      * This element is labeled as a modifier because it may be used to mark that the resource was created in error.
      *
      * https://hl7.org/fhir/organization-definitions.html#Organization.active
+     *
+     * @max_length 3
+     * @decimal_places 0
      */
     active: boolean;
     /**
@@ -68,6 +71,9 @@ export declare class Organization extends BaseTable {
      *   org-1	__Rule__ - The organization SHALL at least have a name or an identifier, and possibly more than one	`(identifier.count() + name.count()) > 0`
      *
      * https://hl7.org/fhir/organization-definitions.html#Organization.name
+     *
+     * @max_length 64
+     * @regex [ \r\n\t\S]+
      */
     name: string;
     /**
@@ -82,6 +88,8 @@ export declare class Organization extends BaseTable {
      * **Comments**: There are no dates associated with the alias/historic names, as this is not intended to track when names were used, but to assist in searching so that older names can still result in identifying the organization.
      *
      * https://hl7.org/fhir/organization-definitions.html#Organization.alias
+     *
+     * @max_length 64
      */
     alias: string;
     /**

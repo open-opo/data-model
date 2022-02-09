@@ -42,6 +42,7 @@
 
 export { Organization } from "./Administration/Organization";
 
+export { Identifier } from "./DataTypes/Identifier";
 // export { Urinalysis } from "./durinalysis";
 // export * as UrinalysisEnums from "./urinalysis/enums";
 

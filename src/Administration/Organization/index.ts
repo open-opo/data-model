@@ -1,26 +1,27 @@
+import { Column, Entity, OneToMany, ManyToOne } from "typeorm";
 import {
-  Column,
-  Entity,
-  OneToMany,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
-import {
-  IsAlpha,
+  IsBoolean,
+  IsString,
   IsEnum,
   IsInt,
   IsPhoneNumber,
   IsUUID,
   MaxLength,
   Min,
+  Matches,
 } from "class-validator";
 
 import { BaseTable } from "../../BaseTable";
 import { ContactPoint, Identifier } from "../../DataTypes";
 // import { State, TimeZone } from "../../opocdmEnums";
 
+/**
+ * *extends* - {@link Identifier}
+ *
+ * [FHIR Reference](https://hl7.org/fhir/organization-definitions.html#Organization.identifier)
+ */
 @Entity()
-export class OrganizationIdentifier extends Identifier {
+class OrganizationIdentifier extends Identifier {
   @ManyToOne(
     () => Organization,
     (organization) => organization.organizationIdentifiers
@@ -29,36 +30,32 @@ export class OrganizationIdentifier extends Identifier {
 }
 
 /**
- * **Definition**: A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action. Includes companies, institutions, corporations, departments, community groups, healthcare practice groups, payer/insurer, etc.
+ * A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action. Includes companies, institutions, corporations, departments, community groups, healthcare practice groups, payer/insurer, etc.
  *
- * **Cardinality**:	0..*
+ * *Requirements* - Organizations are known by a variety of ids. Some institutions maintain several, and most collect identifiers for exchange with other organizations concerning the organization.
  *
- * **Type**: [DomainResource](https://hl7.org/fhir/domainresource.html)
+ * *Cardinality* - `0..*`
  *
- * **Requirements**: Organizations are known by a variety of ids. Some institutions maintain several, and most collect identifiers for exchange with other organizations concerning the organization.
+ * *Type* - [FHIR - DomainResource](https://hl7.org/fhir/domainresource.html)
  *
- * **Invariants**: **Defined on this element**
- *   __org-1__	__Rule__ - The organization SHALL at least have a name or an identifier, and possibly more than one	`(identifier.count() + name.count()) > 0`
+ * > *Invariants* - Defined on this element [org-1] Rule - The organization SHALL at least have a name or an identifier, and possibly more than one	`(identifier.count() + name.count()) > 0`.
  *
- * https://hl7.org/fhir/organization.html
+ * [FHIR Reference](https://hl7.org/fhir/organization.html)
  */
 @Entity({ name: "organization" })
 export class Organization extends BaseTable {
   /**
-   * **Definition**: Identifier for the organization that is used to identify the organization across multiple disparate systems.
+   * Identifier for the organization that is used to identify the organization across multiple disparate systems. (This is a business identifier, not a resource identifier)
    *
-   * **Note**:	This is a business identifier, not a resource identifier (see discussion)
+   * *Requirements* - Organizations are known by a variety of ids. Some institutions maintain several, and most collect identifiers for exchange with other organizations concerning the organization.
    *
-   * **Cardinality**:	0..*
+   * *Cardinality* - `0..*`
    *
-   * **Type**:	{@link Identifier}
+   * *Type* - {@link Identifier}
    *
-   * **Requirements**: Organizations are known by a variety of ids. Some institutions maintain several, and most collect identifiers for exchange with other organizations concerning the organization.
+   * > *Invariants* - Affect this element [org-1]	Rule - The organization SHALL at least have a name or an identifier, and possibly more than one	`(identifier.count() + name.count()) > 0`.
    *
-   * **Invariants**: **Affect this element**
-   *   org-1	__Rule__ - The organization SHALL at least have a name or an identifier, and possibly more than one	`(identifier.count() + name.count()) > 0`
-   *
-   * https://hl7.org/fhir/organization-definitions.html#Organization.identifier
+   * [FHIR Reference](https://hl7.org/fhir/organization-definitions.html#Organization.identifier)
    */
   @OneToMany(
     () => OrganizationIdentifier,
@@ -67,71 +64,96 @@ export class Organization extends BaseTable {
   organizationIdentifiers: OrganizationIdentifier[];
 
   /**
-   * **Definition**: Whether the organization's record is still in active use.
+   * Whether the organization's record is still in active use. (This is a business identifier, not a resource identifier.)
    *
-   * **Note**:	This is a business identifier, not a resource identifier (see discussion)
+   * *Requirements* - Need a flag to indicate a record is no longer to be used and should generally be hidden for the user in the UI.
    *
-   * **Cardinality**:	0..1
+   * *Comments* - This active flag is not intended to be used to mark an organization as temporarily closed or under construction. Instead the Location(s) within the Organization should have the suspended status. If further details of the reason for the suspension are required, then an extension on this element should be used.
    *
-   * **Is Modifier**:	true (Reason: This element is labelled as a modifier because it is a status element that can indicate that a record should not be treated as valid)
+   * *Cardinality* - `0..1`
    *
-   * **Meaning if Missing**: This resource is generally assumed to be active if no value is provided for the active element
+   * *Is Modifier* - true (Reason: This element is labelled as a modifier because it is a status element that can indicate that a record should not be treated as valid)
    *
-   * **Requirements**: Need a flag to indicate a record is no longer to be used and should generally be hidden for the user in the UI.
+   * *Meaning if Missing* - This resource is generally assumed to be active if no value is provided for the active element
    *
-   * **Comments**: This active flag is not intended to be used to mark an organization as temporarily closed or under construction. Instead the Location(s) within the Organization should have the suspended status. If further details of the reason for the suspension are required, then an extension on this element should be used.
-   *
-   * This element is labeled as a modifier because it may be used to mark that the resource was created in error.
-   *
-   * https://hl7.org/fhir/organization-definitions.html#Organization.active
+   * [FHIR Reference](https://hl7.org/fhir/organization-definitions.html#Organization.active)
    */
+  @IsBoolean()
+  @Column({ name: "active", type: "boolean" })
   active: boolean;
 
   /**
-   * **Definition**: A name associated with the organization.
+   * A name associated with the organization.
    *
-   * **Cardinality**:	0..1
    *
-   * **Requirements**: Need to use the name as the label of the organization.
+   * *Requirements* - Need to use the name as the label of the organization.
    *
-   * **Comments**: If the name of an organization changes, consider putting the old name in the alias column so that it can still be located through searches.
+   * *Comments* - If the name of an organization changes, consider putting the old name in the alias column so that it can still be located through searches.
    *
-   * **Invariants**: **Affect this element**
-   *   org-1	__Rule__ - The organization SHALL at least have a name or an identifier, and possibly more than one	`(identifier.count() + name.count()) > 0`
+   * *Cardinality* - 0..1
    *
-   * https://hl7.org/fhir/organization-definitions.html#Organization.name
+   * > *Invariants* - Affect this element [org-1]	*Rule* - The organization SHALL at least have a name or an identifier, and possibly more than one	`(identifier.count() + name.count()) > 0`.
+   *
+   * [FHIR Reference](https://hl7.org/fhir/organization-definitions.html#Organization.name)
+   *
+   * @regex `[ \r\n\t\S]+`
    */
+  @IsString()
+  @Matches("[ \r\n\tS]+")
+  @Column({ name: "name", type: "string" })
   name: string;
 
   /**
-   * **Definition**: A list of alternate names that the organization is known as, or was known as in the past.
+   * A list of alternate names that the organization is known as, or was known as in the past.
    *
-   * **Cardinality**:	0..1
+   * *Requirements* - Over time locations and organizations go through many changes and can be known by different names. For searching knowing previous names that the organization was known by can be very useful.
    *
-   * **Requirements**: Over time locations and organizations go through many changes and can be known by different names.
+   * *Comments* - There are no dates associated with the alias/historic names, as this is not intended to track when names were used, but to assist in searching so that older names can still result in identifying the organization.
    *
-   * For searching knowing previous names that the organization was known by can be very useful.
+   * *Cardinality* - `0..1`
    *
-   * **Comments**: There are no dates associated with the alias/historic names, as this is not intended to track when names were used, but to assist in searching so that older names can still result in identifying the organization.
+   * [FHIR Reference](https://hl7.org/fhir/organization-definitions.html#Organization.alias)
    *
-   * https://hl7.org/fhir/organization-definitions.html#Organization.alias
+   * @is_string
+   * @max_length 64
    */
-  alias: string;
+  @IsString()
+  @Column({ name: "alias", type: "string" })
+  alias?: string;
 
   /**
-   * **Definition**: A list of alternate names that the organization is known as, or was known as in the past.
+   * A list of alternate names that the organization is known as, or was known as in the past.
    *
-   * **Cardinality**:	0..1
+   * *Requirements* - Over time locations and organizations go through many changes and can be known by different names.
    *
-   * **Requirements**: Over time locations and organizations go through many changes and can be known by different names.
+   * *Comments* - There are no dates associated with the alias/historic names, as this is not intended to track when names were used, but to assist in searching so that older names can still result in identifying the organization.
    *
-   * For searching knowing previous names that the organization was known by can be very useful.
+   * *Cardinality* - `0..1`
    *
-   * **Comments**: There are no dates associated with the alias/historic names, as this is not intended to track when names were used, but to assist in searching so that older names can still result in identifying the organization.
+   * *DataType* - {@link ContactPoint}
    *
-   * https://hl7.org/fhir/organization-definitions.html#Organization.alias
+   * [FHIR Reference](https://hl7.org/fhir/organization-definitions.html#Organization.alias)
    */
   telecom: ContactPoint;
+
+  /**
+   * 	An address for the organization.
+   *
+   * *Requirements* - Need to be able to track the hierarchy of organizations within an organization.
+   *
+   * *Comments* - There are no dates associated with the alias/historic names, as this is not intended to track when names were used, but to assist in searching so that older names can still result in identifying the organization.
+   *
+   * *Cardinality* - `0..*`
+   *
+   * *Hierarchy* - This reference is part of a strict Hierarchy [Hierarchy](https://hl7.org/fhir/references.html#circular)
+   *
+   * *DataType* - {@link Address}
+   *
+   * > *Invariants* - Defined on this element [org-2]	*Rule* - An address of an organization can never be of use 'home'	`where(use = 'home').empty()` *Affect this element*
+   *
+   * [FHIR Reference](https://hl7.org/fhir/organization-definitions.html#Organization.address)
+   */
+  address: Address;
 
   // /**
   //  * The official name for the organization
