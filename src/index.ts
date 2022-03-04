@@ -1,5 +1,8 @@
 export { ABGBase, Mode as ABGMode } from "./entity/abg";
 export { CBCBase } from "./entity/cbc";
+export { DiagnosticReport } from "./entity/diagnosticReport";
+export { Observation } from "./entity/observation";
+
 export {
   CultureBase,
   Result as CultureResult,

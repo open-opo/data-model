@@ -17,7 +17,7 @@ export * as Enums from "../enum/opocdmEnums";
  *
  * This code is specific to authorization
  */
-export * as Auth from "../entity/auth";
+// export * as Auth from "../entity/auth";
 
 // Model/Entities
 export * from "./baseModel";
@@ -31,3 +31,5 @@ export * as OrganizationUnit from "./organizationUnit";
 export * as Referral from "./referral";
 export * as StaffTracking from "./staffTracking";
 export * as Urinalysis from "./urinalysis";
+export * as DiagnosticReport from "./diagnosticReport";
+export * as Observation from "./observation";
