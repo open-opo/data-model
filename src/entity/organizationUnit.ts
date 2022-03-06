@@ -1,8 +1,8 @@
 import { IsEnum, MaxLength, Min } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
-import { ReferralBase } from "..";
-import { BaseModel } from "./baseModel";
-import { OrganizationBase } from "./organization";
+import { Referral } from "..";
+import { BaseModel } from "./BaseModel";
+import { Organization } from "./organization";
 
 export enum UnitType {}
 
@@ -10,7 +10,7 @@ export enum UnitType {}
  * Organization Unit
  */
 @Entity({ name: "organization_unit" })
-export class OrganizationUnitBase extends BaseModel {
+export class OrganizationUnit extends BaseModel {
   /**
    * @class
    * @ignore
@@ -46,7 +46,7 @@ export class OrganizationUnitBase extends BaseModel {
   /**
    * The referrals that belong in this unit
    */
-  referrals?: ReferralBase[];
+  referrals?: Referral[];
 
   /**
    * The Organization this unit is a part of
@@ -55,7 +55,7 @@ export class OrganizationUnitBase extends BaseModel {
   @Column({ type: "uuid", default: null, name: "organization_id" })
   organizationId?: string | null;
 
-  @ManyToOne(() => OrganizationBase, (x) => x.units)
+  @ManyToOne(() => Organization, (x) => x.units)
   @JoinColumn({ name: "organization_id" })
-  organization: OrganizationBase;
+  organization: Organization;
 }

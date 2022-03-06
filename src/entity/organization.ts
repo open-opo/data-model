@@ -8,15 +8,15 @@ import {
 } from "class-validator";
 import { Column, Entity, OneToMany } from "typeorm";
 import { State, TimeZone } from "../enum/opocdmEnums";
-import { BaseModel } from "./baseModel";
-import { OrganizationUnitBase } from "./organizationUnit";
-import { ReferralBase } from "./referral";
+import { BaseModel } from "./BaseModel";
+import { OrganizationUnit } from "./organizationUnit";
+import { Referral } from "./Referral";
 
 /**
  * Organization
  */
 @Entity({ name: "organization" })
-export class OrganizationBase extends BaseModel {
+export class Organization extends BaseModel {
   /**
    * @class
    * @ignore
@@ -164,9 +164,9 @@ export class OrganizationBase extends BaseModel {
   fax?: string | null;
 
   // Relationships
-  @OneToMany(() => ReferralBase, (x) => x.referringOrganization)
-  referrals: ReferralBase[];
+  @OneToMany(() => Referral, (x) => x.referringOrganization)
+  referrals: Referral[];
 
-  @OneToMany(() => OrganizationUnitBase, (x) => x.organization)
-  units: OrganizationUnitBase[];
+  @OneToMany(() => OrganizationUnit, (x) => x.organization)
+  units: OrganizationUnit[];
 }
