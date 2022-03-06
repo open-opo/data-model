@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
  * Cardiac Data for uploading to UNOS
  */
@@ -53,7 +52,7 @@ export interface CardiacData {
  * These are different methods for finding the Ejection Fraction
  */
 export enum EjectionMethod {
-  Echo = "Echo",
+  ECHO = "Echo",
   MUGA = "MUGA",
-  Angiogram = "Angiogram",
+  ANGIOGRAM = "Angiogram",
 }

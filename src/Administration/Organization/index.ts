@@ -132,6 +132,8 @@ export class Organization extends BaseTable {
    *
    * *DataType* - {@link ContactPoint}
    *
+   * *Rule* - The address of an organization can never be of use 'home'
+   *
    * [FHIR Reference](https://hl7.org/fhir/organization-definitions.html#Organization.alias)
    */
   telecom: ContactPoint;
@@ -149,11 +151,34 @@ export class Organization extends BaseTable {
    *
    * *DataType* - {@link Address}
    *
+   * *Rule* - The address of an organization can never be of use 'home'
+   *
    * > *Invariants* - Defined on this element [org-2]	*Rule* - An address of an organization can never be of use 'home'	`where(use = 'home').empty()` *Affect this element*
    *
    * [FHIR Reference](https://hl7.org/fhir/organization-definitions.html#Organization.address)
    */
   address: Address;
+
+  /**
+   * 	An address for the organization.
+   *
+   * *Requirements* - Need to be able to track the hierarchy of organizations within an organization.
+   *
+   * *Comments* - There are no dates associated with the alias/historic names, as this is not intended to track when names were used, but to assist in searching so that older names can still result in identifying the organization.
+   *
+   * *Cardinality* - `0..*`
+   *
+   * *Hierarchy* - This reference is part of a strict Hierarchy [Hierarchy](https://hl7.org/fhir/references.html#circular)
+   *
+   * *DataType* - {@link Address}
+   *
+   * *Rule* - The address of an organization can never be of use 'home'
+   *
+   * > *Invariants* - Defined on this element [org-2]	*Rule* - An address of an organization can never be of use 'home'	`where(use = 'home').empty()` *Affect this element*
+   *
+   * [FHIR Reference - Organization.contact](https://hl7.org/fhir/organization-definitions.html#Organization.contact)
+   */
+  contact: Address;
 
   // /**
   //  * The official name for the organization
