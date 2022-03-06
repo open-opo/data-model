@@ -10,7 +10,8 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "docs:serve": "http-server ./docs",
     "docs:build": "typedoc src/index.ts",
-    "docs:watch": "typedoc --watch"
+    "docs:watch": "typedoc --watch",
+    "drop_and_build_db": "ts-node utils/drop_and_build_db.ts"
   },
   "dependencies": {
     "@types/node": "^17.0.14",

@@ -1,5 +1,6 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.203.0/containers/typescript-node
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/javascript-node-postgres
+// Update the VARIANT arg in docker-compose.yml to pick a Node.js version
 {
   "name": "Node.js & Typescript & PostgreSQL",
   "dockerComposeFile": "docker-compose.yml",
@@ -24,19 +25,17 @@
 
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
-    "trunk.io",
     "mtxr.sqltools",
     "mtxr.sqltools-driver-pg",
+    "amazonwebservices.aws-toolkit-vscode",
+    "trunk.io",
     "github.copilot"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
+  // "forwardPorts": [3000, 5432],
 
-  // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh",
-
-  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "root",
   "features": {
     "github-cli": "latest",

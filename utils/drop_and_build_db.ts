@@ -1,4 +1,3 @@
-import "@open-opo/data-model";
 import { ConnectionOptions, createConnection } from "typeorm";
 import { createDatabase } from "typeorm-extension";
 
