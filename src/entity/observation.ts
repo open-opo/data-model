@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
@@ -7,22 +8,14 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { BaseModel } from "./baseModel";
 import { DiagnosticReport } from "./diagnosticReport";
+import { Observation as ObservationType } from "./fhir/observation";
 
 /**
  * Culture
  */
 @Entity({ name: "observation" })
-export class Observation extends BaseModel {
-  /**
-   * @class
-   * @ignore
-   */
-  constructor() {
-    super();
-  }
-
+export class Observation extends BaseEntity {
   /**
    * The referral this applies to
    * @format uuid
@@ -33,10 +26,13 @@ export class Observation extends BaseModel {
   @CreateDateColumn({ name: "created_at", type: "timestamp" })
   createdAt: Date;
 
-  @ManyToOne(() => DiagnosticReport)
+  @ManyToOne(
+    () => DiagnosticReport,
+    (referral: DiagnosticReport) => referral.observations
+  )
   @JoinColumn({ name: "diagnostic_id" })
   diagnosticReport: DiagnosticReport;
 
   @Column({ type: "json" })
-  resource: JSON;
+  resource: ObservationType;
 }
