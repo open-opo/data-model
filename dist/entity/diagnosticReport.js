@@ -25,8 +25,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DiagnosticReport = void 0;
+var class_validator_1 = require("class-validator");
 var typeorm_1 = require("typeorm");
 var observation_1 = require("./observation");
+var referral_1 = require("./referral");
 /**
  * DiagnosticReport
  */
@@ -43,6 +45,16 @@ var DiagnosticReport = /** @class */ (function (_super) {
         (0, typeorm_1.CreateDateColumn)({ name: "created_at", type: "timestamp" }),
         __metadata("design:type", Date)
     ], DiagnosticReport.prototype, "createdAt", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ nullable: true, type: "uuid", name: "referral_id" }),
+        (0, class_validator_1.IsUUID)(),
+        __metadata("design:type", String)
+    ], DiagnosticReport.prototype, "referralId", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return referral_1.ReferralBase; }, function (referral) { return referral.diagnosticReports; }),
+        (0, typeorm_1.JoinColumn)({ name: "referral_id" }),
+        __metadata("design:type", referral_1.ReferralBase)
+    ], DiagnosticReport.prototype, "referral", void 0);
     __decorate([
         (0, typeorm_1.Column)({ type: "json" }),
         __metadata("design:type", Object)

@@ -357,6 +357,7 @@ export declare class ReferralBase extends BaseModel {
      * @max_length 100
      */
     attendingMD?: string | null;
+    diagnosticReports: ABGBase[];
     abgs: ABGBase[];
     cbcs: CBCBase[];
     cultures: CultureBase[];

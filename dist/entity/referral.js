@@ -39,6 +39,7 @@ var organization_1 = require("./organization");
 var staffTracking_1 = require("./staffTracking");
 var urinalysis_1 = require("./urinalysis");
 var organizationUnit_1 = require("./organizationUnit");
+var diagnosticReport_1 = require("./diagnosticReport");
 /**
  * The current organ status for a case
  */
@@ -530,6 +531,10 @@ var ReferralBase = /** @class */ (function (_super) {
         (0, class_validator_1.MaxLength)(100),
         __metadata("design:type", Object)
     ], ReferralBase.prototype, "attendingMD", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return diagnosticReport_1.DiagnosticReport; }, function (x) { return x.referral; }),
+        __metadata("design:type", Array)
+    ], ReferralBase.prototype, "diagnosticReports", void 0);
     __decorate([
         (0, typeorm_1.OneToMany)(function () { return abg_1.ABGBase; }, function (x) { return x.referral; }),
         __metadata("design:type", Array)
