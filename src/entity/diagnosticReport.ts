@@ -1,13 +1,17 @@
+import { IsUUID } from "class-validator";
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { DiagnosticReport as DiagnosticReportType } from "./fhir/diagnosticReport";
 import { Observation } from "./observation";
+import { ReferralBase } from "./referral";
 
 /**
  * DiagnosticReport
@@ -19,6 +23,22 @@ export class DiagnosticReport extends BaseEntity {
 
   @CreateDateColumn({ name: "created_at", type: "timestamp" })
   createdAt: Date;
+
+  @Column({ nullable: true, type: "uuid", name: "referral_id" })
+  @IsUUID()
+  referralId: string;
+
+  /**
+   * The referral this applies to
+   *
+   * @ignore
+   */
+  @ManyToOne(
+    () => ReferralBase,
+    (referral: ReferralBase) => referral.diagnosticReports
+  )
+  @JoinColumn({ name: "referral_id" })
+  referral: ReferralBase;
 
   @Column({ type: "json" })
   resource: DiagnosticReportType;

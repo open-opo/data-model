@@ -34,6 +34,7 @@ import { OrganizationBase } from "./organization";
 import { StaffTrackingBase } from "./staffTracking";
 import { UrinalysisBase } from "./urinalysis";
 import { OrganizationUnitBase } from "./organizationUnit";
+import { DiagnosticReport } from "./diagnosticReport";
 
 /**
  * The current organ status for a case
@@ -683,6 +684,9 @@ export class ReferralBase extends BaseModel {
   attendingMD?: string | null;
 
   // Relationships
+  @OneToMany(() => DiagnosticReport, (x: DiagnosticReport) => x.referral)
+  diagnosticReports: ABGBase[];
+
   @OneToMany(() => ABGBase, (x: ABGBase) => x.referral)
   abgs: ABGBase[];
 
