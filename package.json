@@ -38,6 +38,6 @@
     "tag": "latest"
   },
   "devDependencies": {
-    "typedoc": "^0.22.11"
+    "typedoc": "^0.23.7"
   }
 }
